@@ -1,0 +1,40 @@
+services:
+  app1:
+    build: ./services
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - unstable-service
+
+  app2:
+    build: ./services
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    depends_on:
+      - unstable-service
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app1
+      - app2
+
+  unstable-service:
+    build:
+      context: ./services
+      dockerfile: Dockerfile
+    command: node unstable.js
+    ports:
+      - "4000:4000"
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
