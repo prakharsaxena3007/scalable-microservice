@@ -1,11 +1,9 @@
-// unstable.js
 import express from "express";
 
 const app = express();
 const PORT = 4000;
 
 app.get("/data", (req, res) => {
-  // Simulate delay or failure randomly
   const shouldFail = Math.random() < 0.3;
   const shouldDelay = Math.random() < 0.3;
 
