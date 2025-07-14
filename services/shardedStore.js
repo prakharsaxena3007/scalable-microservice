@@ -1,13 +1,12 @@
-// shardedStore.js
 import { createClient } from "redis";
 
-const redis = createClient({ url: "redis://redis:6379" }); // Update if local
+const redis = createClient({ url: "redis://redis:6379" }); 
 await redis.connect();
 
 export async function saveData(id, data) {
   try {
     await redis.set(id.toString(), JSON.stringify(data));
-    await redis.incr("total_saved"); // Count saved entries
+    await redis.incr("total_saved");
   } catch (err) {
     console.error("Redis save error:", err);
   }

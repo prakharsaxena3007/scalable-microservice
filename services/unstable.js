@@ -19,9 +19,9 @@ app.get("/data", (req, res) => {
   };
 
   if (shouldDelay) {
-    setTimeout(() => res.json(response), 3000); // Simulate delay > 2s
+    setTimeout(() => res.json(response), 3000);
   } else {
-    res.json(response); // Normal response
+    res.json(response);
   }
 });
 
