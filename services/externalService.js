@@ -1,19 +1,41 @@
 import fetch from "node-fetch";
+import {
+  logExternalServiceCall,
+  logExternalServiceSuccess,
+  logExternalServiceFailure,
+  logExternalServiceFallback,
+} from "./logger.js";
 
-const getExternalData = async (retries = 3) => {
+const getExternalData = async (retries = 3, originalRetries = retries) => {
   const url = "http://unstable-service:4000/data";
+
+  logExternalServiceCall(url, retries);
+
   try {
-    const res = await fetch(url, { timeout: 2000 });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
+    let res;
+
+    try {
+      res = await fetch(url, { signal: controller.signal });
+    } finally {
+      clearTimeout(timeout);
+    }
+
     if (!res.ok) {
       throw new Error("Failed external service");
     }
-    return await res.json();
+
+    const data = await res.json();
+    logExternalServiceSuccess(url, data);
+    return data;
   } catch (err) {
     if (retries > 0) {
-      console.log(`Retrying... (${3 - retries + 1})`);
-      return getExternalData(retries - 1);
+      logExternalServiceFailure(url, err);
+      return await getExternalData(retries - 1, originalRetries);
     }
-    console.warn("Fallback used due to repeated failure.");
+
+    logExternalServiceFallback(url);
     return { message: "Fallback response" };
   }
 };
