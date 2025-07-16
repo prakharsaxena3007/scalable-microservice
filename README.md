@@ -277,7 +277,7 @@ You’ll now get real external data again.
 | redis1 / redis2  | Redis shards                      | 6379+ |
 | unstable-service | Mock service with random failures | 4000  |
 | prometheus       | Metrics scraper                   | 9090  |
-| grafana          | Metrics dashboard                 | 3000  |
+| grafana          | Metrics dashboard                 | 3001  |
 
 ---
 
