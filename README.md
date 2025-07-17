@@ -19,7 +19,7 @@ This project demonstrates a **scalable and resilient Node.js system** that uses 
 ---
 
 ## 🧱 Architecture
-
+```
            ┌────────────┐
            │  Client    │
            └────┬───────┘
@@ -43,7 +43,7 @@ This project demonstrates a **scalable and resilient Node.js system** that uses 
       ┌────▼───────┐
       │  Grafana   │
       └────────────┘
-
+```
 ---
 
 ## 📦 Project Structure
@@ -53,12 +53,8 @@ This project demonstrates a **scalable and resilient Node.js system** that uses 
 ├── docker-compose.yml
 ├── nginx/
 │ └── default.conf
-├── prometheus/
+├── monitoring/
 │ └── prometheus.yml
-├── grafana/
-│ └── provisioning/
-│ ├── dashboards/
-│ └── datasources/
 ├── services/
 │ ├── app.js
 │ ├── externalService.js
@@ -83,7 +79,7 @@ Our system integrates **Prometheus** for scraping runtime metrics and **Grafana*
 - Track CPU usage, memory, uptime, request volume, and failures in real-time
 - Pre-provisioned dashboards load automatically
 
-> Visit: `http://localhost:3000`
+> Visit: `http://localhost:3002`
 >
 > Credentials: `admin / admin`
 
@@ -277,7 +273,7 @@ You’ll now get real external data again.
 | redis1 / redis2  | Redis shards                      | 6379+ |
 | unstable-service | Mock service with random failures | 4000  |
 | prometheus       | Metrics scraper                   | 9090  |
-| grafana          | Metrics dashboard                 | 3001  |
+| grafana          | Metrics dashboard                 | 3002  |
 
 ---
 
