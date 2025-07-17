@@ -19,6 +19,7 @@ This project demonstrates a **scalable and resilient Node.js system** that uses 
 ---
 
 ## 🧱 Architecture
+
 ```
            ┌────────────┐
            │  Client    │
@@ -44,6 +45,7 @@ This project demonstrates a **scalable and resilient Node.js system** that uses 
       │  Grafana   │
       └────────────┘
 ```
+
 ---
 
 ## 📦 Project Structure
@@ -375,7 +377,7 @@ delays_total
    - **Bar gauge**
 
 5. Click **Apply**, then **Save dashboard**
-6. Give it a name like:
+6. Give it a name like: Scalable Microservice Monitoring
 
 ---
 
@@ -420,17 +422,17 @@ curl http://localhost:4000/data?fail=true
 
 #7. Simulate a delay
 curl http://localhost:4000/data?delay=true
-
-#8. Unstable Service Metrics data
-[![Unstable-service-metrics](./screenshots/image.png)]
-
 ```
+
+#### 8. Unstable Service Metrics data
+
+[![Unstable-service-metrics](./screenshots/image.png)]
 
 ---
 
 ## 📈 Bonus Features
 
-- [✅] Load balanced with NGIN✅
+- [✅] Load balanced with NGINX
 - [✅] Clustered Node.js workers
 - [✅] Redis-based sharded storage
 - [✅] Fallback + retry mechanism
